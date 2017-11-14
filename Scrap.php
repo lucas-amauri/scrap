@@ -51,8 +51,8 @@ class Scrap {
 		$this->cookies[] = $cookie;
 	}
 
-	public function setPostHeaders($post_headers) {
-		$this->post_headers = $post_headers;
+	public function setHeaders($headers) {
+		$this->headers = $headers;
 	}
 
 	public function setSslVersion($version) {
@@ -86,10 +86,11 @@ class Scrap {
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, $this->timeout);
 		curl_setopt($chOcr, CURLOPT_COOKIEFILE, 'cookie.txt');
 		curl_setopt($chOcr, CURLOPT_COOKIEJAR, 'cookie.txt');
-		curl_setopt ($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
+		curl_setopt($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
+		curl_setopt($chOcr, CURLINFO_HEADER_OUT, true);
 		if ($this->headers) {
-			curl_setopt($chOcr, CURLOPT_HTTPHEADER, $this->post_headers);
+			curl_setopt($chOcr, CURLOPT_HTTPHEADER, $this->headers);
 		}
 		
 		if ($this->cookies) {
