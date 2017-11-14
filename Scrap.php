@@ -129,6 +129,8 @@ class Scrap {
 			$query .= urlencode($key) . '=' . urlencode($value) . '&';
 		}
 
+		$query = substr($query, 0, -1);
+
 		return $query;
 	}
 }
