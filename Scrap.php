@@ -3,26 +3,12 @@
 class Scrap {
 	private $SSL_VERSION = 1;
 	private $cookies = array();
-	private $url_start, $url_captcha, $post_url, $curl_info, $model, $headers, $follow_location = true;
-
-	function __construct() {
-
-	}
+	private $curl_info, 
+	$user_agent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"
+	, $headers, $follow_location = true;
 
 	public function addCookie($cookie) {
 		$this->cookies[] = $cookie;
-	}
-
-	public function setURLInicial($url_start) {
-		$this->url_start = $url_start;
-	}
-	
-	public function setCaptchaURL($url_captcha) {
-		$this->url_captcha = $url_captcha;
-	}
-
-	public function setPostURL($post_url) {
-		$this->post_url = $post_url;
 	}
 
 	public function setPostHeaders($post_headers) {
@@ -33,16 +19,12 @@ class Scrap {
 		$this->SSL_VERSION = $version;
 	}
 
-	public function setStringValida($string_valid) {
-		$this->string_valid = $string_valid;
-	}
-
-	public function setModel($model) {
-		$this->model = $model;
-	}
-
 	public function setFollowLocation($follow_location) {
 		$this->follow_location = $follow_location;
+	}
+
+	public function setUserAgent($user_agent) {
+		$this->user_agent = $user_agent;
 	}
 
 	/**
@@ -64,7 +46,7 @@ class Scrap {
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
 		curl_setopt($chOcr, CURLOPT_COOKIEFILE, 'cookie.txt');
 		curl_setopt($chOcr, CURLOPT_COOKIEJAR, 'cookie.txt');
-		curl_setopt ($chOcr, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"); 
+		curl_setopt ($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
 		if ($this->headers) {
 			curl_setopt($chOcr, CURLOPT_HTTPHEADER, $this->post_headers);
@@ -92,5 +74,21 @@ class Scrap {
 
 	public function clearCookies() {
 		@unlink('cookie.txt');
+	}
+
+	/**
+	 * Convert an array to url query
+	 * @param array $array
+	 * @param boolean $question_auto
+	 * @return string
+	 */
+	public function array2query(array $array, $question_auto = true) {
+		$query = $question_auto ? '?' : '';
+
+		foreach ($array as $key => $value) {
+			$query .= urlencode($key) . '=' . urlencode($value) . '&';
+		}
+
+		return $query;
 	}
 }
