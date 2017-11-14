@@ -1,11 +1,51 @@
 <?php
 
+/**
+ * Handle HTTP request for scrap methods
+ * @author: Lucas Amauri Oliveira
+ */
 class Scrap {
+	/**
+	 * Request timeout
+	 * @var int
+	 */
+	private $timeout = 10;
+
+	/**
+	 * SSL Version
+	 * @var string
+	 */
 	private $SSL_VERSION = 1;
+
+	/**
+	 * HTTP Request cookies
+	 * @var array
+	 */
 	private $cookies = array();
-	private $curl_info, 
-	$user_agent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"
-	, $headers, $follow_location = true;
+
+	/**
+	 * Curl resource info
+	 * @var array
+	 */
+	private $curl_info;
+
+	/**
+	 * HTTP User Agent
+	 * @var string
+	 */
+	private $user_agent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
+
+	/**
+	 * HTTP Request Headers
+	 * @var string
+	 */
+	private $headers;
+
+	/**
+	 * Define if request use Follow location option
+	 * @var boolean
+	 */
+	private $follow_location = true;
 
 	public function addCookie($cookie) {
 		$this->cookies[] = $cookie;
@@ -43,7 +83,7 @@ class Scrap {
 		curl_setopt($chOcr, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($chOcr, CURLOPT_SSL_VERIFYHOST, 2);
 		curl_setopt($chOcr, CURLOPT_SSLVERSION, $this->SSL_VERSION);
-		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
+		curl_setopt($chOcr, CURLOPT_TIMEOUT, $this->timeout);
 		curl_setopt($chOcr, CURLOPT_COOKIEFILE, 'cookie.txt');
 		curl_setopt($chOcr, CURLOPT_COOKIEJAR, 'cookie.txt');
 		curl_setopt ($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
