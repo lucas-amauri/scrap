@@ -1,0 +1,7 @@
+{
+    "name": "lucasamauri/scrap",
+    "description": "PHP Web scraper",
+    "require": {
+        "php": "^5.6"
+    }
+}

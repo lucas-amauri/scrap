@@ -47,6 +47,12 @@ class Scrap {
 	 */
 	private $follow_location = true;
 
+	/**
+	 * Define if output response headers
+	 * @var boolean
+	 */
+	private $response_header = false;
+
 	public function addCookie($cookie) {
 		$this->cookies[] = $cookie;
 	}
@@ -65,6 +71,10 @@ class Scrap {
 
 	public function setUserAgent($user_agent) {
 		$this->user_agent = $user_agent;
+	}
+
+	public function setResponseHeaders($response_header) {
+		$this->response_header = $response_header;
 	}
 
 	/**
@@ -89,6 +99,9 @@ class Scrap {
 		curl_setopt($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
 		curl_setopt($chOcr, CURLINFO_HEADER_OUT, true);
+		if ($this->response_header) {
+			curl_setopt($chOcr, CURLOPT_HEADER, true);
+		}
 		if ($this->headers) {
 			curl_setopt($chOcr, CURLOPT_HTTPHEADER, $this->headers);
 		}
