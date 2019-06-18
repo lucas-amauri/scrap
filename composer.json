@@ -2,6 +2,9 @@
     "name": "lucasamauri/scrap",
     "description": "PHP Web scraper",
     "require": {
-        "php": "^5.6 || ^7.0"
-    }
+        "php": "^5.6 || ^7.0",
+        "lucasamauri/scrap": "*"
+    },
+    "minimum-stability": "dev",
+	"prefer-stable" : true
 }
