@@ -1,5 +1,7 @@
 <?php
 
+namespace Scrap;
+
 /**
  * Handle HTTP request for scrap methods
  * @author: Lucas Amauri Oliveira
