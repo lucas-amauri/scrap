@@ -6,7 +6,7 @@
     },
     "autoload": {
 		"psr-4": {
-			"lucasamauri\\Scrap\\": "src/"
+			"Scrap\\Scrap\\": "src/"
 		}
 	},
     "minimum-stability": "dev",
