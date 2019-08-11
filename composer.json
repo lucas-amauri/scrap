@@ -6,7 +6,7 @@
     },
     "autoload": {
 		"psr-4": {
-			"Scrap\\Scrap\\": "src/"
+			"Scrap\\": "src/"
 		}
 	},
     "minimum-stability": "dev",
