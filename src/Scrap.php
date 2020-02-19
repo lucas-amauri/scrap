@@ -11,7 +11,7 @@ class Scrap {
 	 * Request timeout
 	 * @var int
 	 */
-	private $timeout = 10;
+	private $timeout = 300;
 
 	/**
 	 * SSL Version
@@ -72,12 +72,6 @@ class Scrap {
 	 * @var string
 	 */
 	private $encoding;
-
-	/**
-	 * Request timeout
-	 * @var integer
-	 */
-	private $timeout = 300;
 
 	public function addCookie($cookie) {
 		$this->cookies[] = $cookie;
