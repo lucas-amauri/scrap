@@ -50,6 +50,18 @@ class Scrap {
 	private $follow_location = true;
 
 	/**
+	 * Define HTTP Proxy host
+	 * @var string
+	 */
+	private $proxy_host;
+
+	/**
+	 * HTTP Proxy port
+	 * @var int
+	 */
+	private $proxy_port;
+
+	/**
 	 * Define if output response headers
 	 * @var boolean
 	 */
@@ -77,6 +89,14 @@ class Scrap {
 
 	public function setResponseHeaders($response_header) {
 		$this->response_header = $response_header;
+	}
+
+	public function setProxyHost($proxy_host) {
+		$this->proxy_host = $proxy_host;
+	}
+
+	public function setProxyPort($proxy_port) {
+		$this->proxy_port = $proxy_port;
 	}
 
 	/**
@@ -115,6 +135,14 @@ class Scrap {
 		if ($method == 'POST') {			
 			curl_setopt($chOcr, CURLOPT_POST, 1);
 			curl_setopt($chOcr, CURLOPT_POSTFIELDS, $params);
+		}
+
+		if ($this->proxy_host) {
+			curl_setopt($chOcr, CURLOPT_PROXY, $this->proxy_host);
+		}
+
+		if ($this->proxy_port) {
+			curl_setopt($chOcr, CURLOPT_PROXYPORT, $this->proxy_port);
 		}
 		
 		$result = curl_exec ($chOcr);
