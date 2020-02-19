@@ -152,6 +152,10 @@ class Scrap {
 			curl_setopt($chOcr, CURLOPT_COOKIE, implode(';', $this->cookies));
 		}
 
+		if ($this->encoding) {
+			curl_setopt($chOcr, CURLOPT_ENCODING, $this->encoding);	
+		}
+
 		if ($method == 'POST') {			
 			curl_setopt($chOcr, CURLOPT_POST, 1);
 			curl_setopt($chOcr, CURLOPT_POSTFIELDS, $params);
