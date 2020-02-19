@@ -67,6 +67,18 @@ class Scrap {
 	 */
 	private $response_header = false;
 
+	/**
+	 * Encoding
+	 * @var string
+	 */
+	private $encoding;
+
+	/**
+	 * Request timeout
+	 * @var integer
+	 */
+	private $timeout = 300;
+
 	public function addCookie($cookie) {
 		$this->cookies[] = $cookie;
 	}
@@ -89,6 +101,14 @@ class Scrap {
 
 	public function setResponseHeaders($response_header) {
 		$this->response_header = $response_header;
+	}
+
+	public function setEncoding($encoding) {
+		$this->encoding = $encoding;
+	}
+
+	public function setTimeout($timeout) {
+		$this->timeout = $timeout;
 	}
 
 	public function setProxyHost($proxy_host) {
