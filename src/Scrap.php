@@ -126,14 +126,13 @@ class Scrap {
 		curl_setopt($chOcr, CURLOPT_URL, $url);		
 		curl_setopt($chOcr, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($chOcr, CURLOPT_FOLLOWLOCATION, $this->follow_location);
-		curl_setopt($chOcr, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($chOcr, CURLOPT_SSL_VERIFYPEER, true);
 		curl_setopt($chOcr, CURLOPT_SSL_VERIFYHOST, 2);
 		curl_setopt($chOcr, CURLOPT_SSLVERSION, $this->SSL_VERSION);
 		curl_setopt($chOcr, CURLOPT_TIMEOUT, $this->timeout);
 		curl_setopt($chOcr, CURLOPT_COOKIEFILE, 'cookie.txt');
 		curl_setopt($chOcr, CURLOPT_COOKIEJAR, 'cookie.txt');
 		curl_setopt($chOcr, CURLOPT_USERAGENT, $this->user_agent); 
-		curl_setopt($chOcr, CURLOPT_TIMEOUT, 10);
 		curl_setopt($chOcr, CURLINFO_HEADER_OUT, true);
 		if ($this->response_header) {
 			curl_setopt($chOcr, CURLOPT_HEADER, true);
@@ -155,7 +154,7 @@ class Scrap {
                     curl_setopt($chOcr, CURLOPT_POSTFIELDS, $params);
 		}
 		ELSE if ($method == 'PUT') {
-                    curl_setopt($chOcr, CURLOPT_PUT, 1);
+                    curl_setopt($chOcr, CURLOPT_CUSTOMREQUEST, "PUT");
                     curl_setopt($chOcr, CURLOPT_POSTFIELDS, $params);
 		}
 
